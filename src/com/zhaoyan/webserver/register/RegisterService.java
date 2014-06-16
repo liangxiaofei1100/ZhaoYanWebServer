@@ -11,4 +11,6 @@ public interface RegisterService {
 	 * @return
 	 */
 	boolean registerUser(List<Object> params);
+	
+	boolean isUserNameExist(String username);
 }

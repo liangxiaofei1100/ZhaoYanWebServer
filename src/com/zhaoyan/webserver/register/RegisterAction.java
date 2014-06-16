@@ -2,7 +2,6 @@ package com.zhaoyan.webserver.register;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,31 +43,48 @@ public class RegisterAction extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("txt/html;charset=utf-8");
 		PrintWriter writer = response.getWriter();
+		boolean checkRegisterOK = true;
+		String respondMessage = "";
 
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println("Username=" + userName);
-		System.out.println("Password=" + password);
 
 		if (userName == null || userName.equals("")) {
-			System.err.println("User name is empty!!");
-		}
-		if (password == null || password.equals("")) {
-			System.err.println("Password is empty");
+			respondMessage = "User name is empty!";
+			System.err.println("User name is empty!");
+			response.setStatus(400);
+			checkRegisterOK = false;
+		} else if (password == null || password.equals("")) {
+			respondMessage = "Password is empty!";
+			System.err.println("Password is empty!");
+			response.setStatus(400);
+			checkRegisterOK = false;
 		}
 
-		List<Object> params = new ArrayList<>();
-		params.add(userName);
-		params.add(password);
-		boolean success = mRegisterService.registerUser(params);
-		if (success) {
-			writer.write("Register success.");
-		} else {
-			writer.write("Register fail.");
+		boolean registerSuccess = false;
+		if (checkRegisterOK) {
+			List<Object> params = new ArrayList<>();
+			params.add(userName);
+			params.add(password);
+			registerSuccess = mRegisterService.registerUser(params);
+			if (registerSuccess) {
+				respondMessage = "Register success.";
+				response.setStatus(200);
+			} else {
+				if (mRegisterService.isUserNameExist(userName)) {
+					respondMessage = "User name is already exist.";
+				} else {
+					respondMessage = "Unkown error.";
+				}
+				response.setStatus(400);
+			}
 		}
+
 		String path = request.getContextPath();
 		response.sendRedirect(path + "/show_result.jsp?result="
-				+ URLEncoder.encode(success ? "注册成功" : "注册失败", "utf-8"));
+				+ respondMessage);
+
+		writer.write(respondMessage);
 		writer.flush();
 		writer.close();
 	}
