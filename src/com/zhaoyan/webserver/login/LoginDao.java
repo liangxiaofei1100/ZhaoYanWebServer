@@ -16,9 +16,29 @@ public class LoginDao implements LoginService {
 	@Override
 	public boolean login(List<Object> params) {
 		boolean result = false;
+		String sql = "select * from " + UserInfoTable.TABLE_NAME + " where ("
+				+ UserInfoTable.USER_NAME + "=? or " + UserInfoTable.EMAIL
+				+ "=?) and " + UserInfoTable.PASSWORD + "=?";
+
+		try {
+			mJdbcUtils.getConnection();
+			Map<String, Object> map = mJdbcUtils.findSingleResult(sql, params);
+			result = !map.isEmpty();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mJdbcUtils.releaseConnection();
+		}
+		return result;
+	}
+
+	@Override
+	public boolean isUserExist(List<Object> params) {
+		boolean result = false;
 		String sql = "select * from " + UserInfoTable.TABLE_NAME + " where "
-				+ UserInfoTable.USER_NAME + "=? and " + UserInfoTable.PASSWORD
+				+ UserInfoTable.USER_NAME + "=? or " + UserInfoTable.EMAIL
 				+ "=?";
+
 		try {
 			mJdbcUtils.getConnection();
 			Map<String, Object> map = mJdbcUtils.findSingleResult(sql, params);

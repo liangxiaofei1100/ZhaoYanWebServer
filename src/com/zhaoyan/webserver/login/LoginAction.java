@@ -1,7 +1,7 @@
 package com.zhaoyan.webserver.login;
 
 import java.io.IOException;
-import java.net.URLEncoder;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,21 +42,42 @@ public class LoginAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		response.setContentType("txt/html;charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		String respondMessage = "";
+
+		String usernameOrEmail = request.getParameter("usernameOrEmail");
 		String password = request.getParameter("password");
+
 		List<Object> params = new ArrayList<>();
-		params.add(username);
+		params.add(usernameOrEmail);
+		params.add(usernameOrEmail);
 		params.add(password);
 		boolean success = mLoginService.login(params);
 		if (success) {
-			System.out.println("login success");
+			respondMessage = "Login success.";
+			System.out.println("Login success user = " + usernameOrEmail);
+			response.setStatus(200);
 		} else {
-			System.out.println("login fail");
+			System.out.println("Login fail user = " +usernameOrEmail);
+			List<Object> params2 = new ArrayList<>();
+			params2.add(usernameOrEmail);
+			params2.add(usernameOrEmail);
+			if (!mLoginService.isUserExist(params2)) {
+				respondMessage = "User not exist. user = " + usernameOrEmail;
+			} else {
+				respondMessage = "Password dismatch.";
+			}
+			response.setStatus(400);
 		}
-		
+
 		String path = request.getContextPath();
 		response.sendRedirect(path + "/show_result.jsp?result="
-				+ URLEncoder.encode(success ? "登录成功" : "登录失败", "utf-8"));
+				+ respondMessage);
+		
+		writer.write(respondMessage);
+		writer.flush();
+		writer.close();
 	}
 
 	@Override
