@@ -2,6 +2,7 @@ package com.zhaoyan.webserver.register;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,11 @@ public class RegisterAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		String respondMessage = register(request, response);
+
+		String path = request.getContextPath();
+		response.sendRedirect(path + "/show_result.jsp?result="
+				+ URLEncoder.encode(respondMessage, "utf-8"));
 	}
 
 	/**
@@ -41,8 +46,17 @@ public class RegisterAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("txt/html;charset=utf-8");
+		String respondMessage = register(request, response);
+
 		PrintWriter writer = response.getWriter();
+		writer.write(respondMessage);
+		writer.flush();
+		writer.close();
+	}
+
+	private String register(HttpServletRequest request,
+			HttpServletResponse response) {
+		response.setContentType("txt/html;charset=utf-8");
 		boolean checkRegisterOK = true;
 		String respondMessage = "";
 
@@ -79,14 +93,7 @@ public class RegisterAction extends HttpServlet {
 				response.setStatus(400);
 			}
 		}
-
-		String path = request.getContextPath();
-		response.sendRedirect(path + "/show_result.jsp?result="
-				+ respondMessage);
-
-		writer.write(respondMessage);
-		writer.flush();
-		writer.close();
+		return respondMessage;
 	}
 
 	@Override
