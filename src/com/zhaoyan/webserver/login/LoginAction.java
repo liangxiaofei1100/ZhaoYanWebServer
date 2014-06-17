@@ -2,6 +2,7 @@ package com.zhaoyan.webserver.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,6 @@ public class LoginAction extends HttpServlet {
 	 */
 	public LoginAction() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -33,7 +33,11 @@ public class LoginAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		String respondMessage = login(request, response);
+
+		String path = request.getContextPath();
+		response.sendRedirect(path + "/show_result.jsp?result="
+				+ URLEncoder.encode(respondMessage, "utf-8"));
 	}
 
 	/**
@@ -42,8 +46,17 @@ public class LoginAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String respondMessage = login(request, response);
+
 		response.setContentType("txt/html;charset=utf-8");
 		PrintWriter writer = response.getWriter();
+		writer.write(respondMessage);
+		writer.flush();
+		writer.close();
+	}
+
+	private String login(HttpServletRequest request,
+			HttpServletResponse response) {
 		String respondMessage = "";
 
 		String usernameOrEmail = request.getParameter("usernameOrEmail");
@@ -58,8 +71,9 @@ public class LoginAction extends HttpServlet {
 			respondMessage = "Login success.";
 			System.out.println("Login success user = " + usernameOrEmail);
 			response.setStatus(200);
+			
 		} else {
-			System.out.println("Login fail user = " +usernameOrEmail);
+			System.out.println("Login fail user = " + usernameOrEmail);
 			List<Object> params2 = new ArrayList<>();
 			params2.add(usernameOrEmail);
 			params2.add(usernameOrEmail);
@@ -71,13 +85,7 @@ public class LoginAction extends HttpServlet {
 			response.setStatus(400);
 		}
 
-		String path = request.getContextPath();
-		response.sendRedirect(path + "/show_result.jsp?result="
-				+ respondMessage);
-		
-		writer.write(respondMessage);
-		writer.flush();
-		writer.close();
+		return respondMessage;
 	}
 
 	@Override
