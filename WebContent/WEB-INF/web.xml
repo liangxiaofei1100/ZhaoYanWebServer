@@ -20,4 +20,13 @@
 		<url-pattern>/servlet/LoginAction</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>GetUserInfoAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.userinfomanage.GetUserInfoAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetUserInfoAction</servlet-name>
+		<url-pattern>/servlet/GetUserInfoAction</url-pattern>
+	</servlet-mapping>
+
 </web-app>

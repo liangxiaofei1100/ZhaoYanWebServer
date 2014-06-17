@@ -2,15 +2,19 @@ package com.zhaoyan.webserver.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.zhaoyan.webserver.userinfomanage.GetUserInfoDAO;
+import com.zhaoyan.webserver.userinfomanage.GetUserInfoService;
+import com.zhaoyan.webserver.userinfomanage.UserInfoUtil;
 
 /**
  * Servlet implementation class LoginAction
@@ -19,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginService mLoginService;
+	private GetUserInfoService mGetUserInfoService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,11 +38,7 @@ public class LoginAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String respondMessage = login(request, response);
-
-		String path = request.getContextPath();
-		response.sendRedirect(path + "/show_result.jsp?result="
-				+ URLEncoder.encode(respondMessage, "utf-8"));
+		doPost(request, response);
 	}
 
 	/**
@@ -46,11 +47,14 @@ public class LoginAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
+		response.setStatus(HttpServletResponse.SC_OK);
+
 		String respondMessage = login(request, response);
 
-		response.setContentType("txt/html;charset=utf-8");
 		PrintWriter writer = response.getWriter();
-		writer.write(respondMessage);
+		writer.print(respondMessage);
 		writer.flush();
 		writer.close();
 	}
@@ -62,16 +66,22 @@ public class LoginAction extends HttpServlet {
 		String usernameOrEmail = request.getParameter("usernameOrEmail");
 		String password = request.getParameter("password");
 
-		List<Object> params = new ArrayList<>();
-		params.add(usernameOrEmail);
-		params.add(usernameOrEmail);
-		params.add(password);
-		boolean success = mLoginService.login(params);
+		List<Object> loginParams = new ArrayList<>();
+		loginParams.add(usernameOrEmail);
+		loginParams.add(usernameOrEmail);
+		loginParams.add(password);
+		boolean success = mLoginService.login(loginParams);
 		if (success) {
-			respondMessage = "Login success.";
 			System.out.println("Login success user = " + usernameOrEmail);
+			List<Object> getUserInfoParams = new ArrayList<>();
+			getUserInfoParams.add(usernameOrEmail);
+			getUserInfoParams.add(usernameOrEmail);
+			Map<String, Object> userInfo = mGetUserInfoService
+					.getUserInfo(getUserInfoParams);
+
+			respondMessage = UserInfoUtil.userInfo2Json(userInfo);
 			response.setStatus(200);
-			
+
 		} else {
 			System.out.println("Login fail user = " + usernameOrEmail);
 			List<Object> params2 = new ArrayList<>();
@@ -92,6 +102,7 @@ public class LoginAction extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		mLoginService = new LoginDao();
+		mGetUserInfoService = new GetUserInfoDAO();
 	}
 
 }
