@@ -45,12 +45,42 @@ public class RegisterAction extends HttpServlet {
 		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_OK);
 
-		String respondMessage = register(request, response);
+		String action = request.getParameter("action");
+
+		String respondMessage = "";
+		if ("checkUserName".equals(action)) {
+			respondMessage = checkUserName(request, response);
+		} else {
+			respondMessage = register(request, response);
+		}
 
 		PrintWriter writer = response.getWriter();
 		writer.print(respondMessage);
 		writer.flush();
 		writer.close();
+	}
+
+	private String checkUserName(HttpServletRequest request,
+			HttpServletResponse response) {
+		String respondMessage = "";
+
+		String userName = request.getParameter("username");
+
+		if (userName == null || userName.equals("")) {
+			respondMessage = "User name is empty!";
+			System.err.println("User name is empty!");
+			response.setStatus(400);
+		}
+
+		if (mRegisterService.isUserNameExist(userName)) {
+			respondMessage = "User name is already exist.";
+			response.setStatus(400);
+		} else {
+			respondMessage = "Check OK.";
+			response.setStatus(200);
+		}
+
+		return respondMessage;
 	}
 
 	private String register(HttpServletRequest request,
