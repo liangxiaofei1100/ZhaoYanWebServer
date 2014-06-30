@@ -29,4 +29,25 @@
 		<url-pattern>/servlet/GetUserInfoAction</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>GetPasswordAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.getpassword.GetPasswordAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetPasswordAction</servlet-name>
+		<url-pattern>/servlet/GetPasswordAction</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>com.zhaoyan.webserver.getpassword.GetPasswordRequestClearContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>ResetPasswordAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.resetpassword.ResetPasswordAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResetPasswordAction</servlet-name>
+		<url-pattern>/servlet/ResetPasswordAction</url-pattern>
+	</servlet-mapping>
 </web-app>
