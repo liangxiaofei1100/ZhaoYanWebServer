@@ -50,4 +50,13 @@
 		<servlet-name>ResetPasswordAction</servlet-name>
 		<url-pattern>/servlet/ResetPasswordAction</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GoldAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.gold.GoldAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GoldAction</servlet-name>
+		<url-pattern>/servlet/GoldAction</url-pattern>
+	</servlet-mapping>
 </web-app>
