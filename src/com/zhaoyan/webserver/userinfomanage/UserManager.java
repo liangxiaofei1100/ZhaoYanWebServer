@@ -39,7 +39,7 @@ public class UserManager {
 	 */
 	public boolean isUserExist(String userNameOrEmail) {
 		String userName = getUserName(userNameOrEmail);
-		return "".equals(userName);
+		return !"".equals(userName);
 	}
 
 	/**
@@ -107,5 +107,33 @@ public class UserManager {
 			mJdbcUtils.releaseConnection();
 		}
 		return map;
+	}
+
+	/**
+	 * Check whether usernameOrEmail match password
+	 * @param usernameOrEmail
+	 * @param Password
+	 * @return
+	 */
+	public boolean matchPassword(String usernameOrEmail, String password) {
+		boolean result = false;
+		String sql = "select * from " + UserInfoTable.TABLE_NAME + " where ("
+				+ UserInfoTable.USER_NAME + "=? or " + UserInfoTable.EMAIL
+				+ "=?) and " + UserInfoTable.PASSWORD + "=?";
+		ArrayList<Object> params = new ArrayList<>();
+		params.add(usernameOrEmail);
+		params.add(usernameOrEmail);
+		params.add(password);
+
+		try {
+			mJdbcUtils.getConnection();
+			Map<String, Object> map = mJdbcUtils.findSingleResult(sql, params);
+			result = !map.isEmpty();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mJdbcUtils.releaseConnection();
+		}
+		return result;
 	}
 }

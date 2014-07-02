@@ -30,6 +30,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>ModifyUserInfoAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.userinfomanage.ModifyUserInfoAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifyUserInfoAction</servlet-name>
+		<url-pattern>/servlet/ModifyUserInfoAction</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>GetPasswordAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.getpassword.GetPasswordAction</servlet-class>
 	</servlet>
