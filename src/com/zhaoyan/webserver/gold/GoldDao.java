@@ -16,7 +16,7 @@ public class GoldDao implements GoldService {
 	public boolean addGold(String username, String gold) {
 		boolean result = false;
 		String sql = "update " + UserInfoTable.TABLE_NAME + " set "
-				+ UserInfoTable.GOLD + "=" + UserInfoTable.GOLD + "+? where "
+				+ UserInfoTable.JIFEN + "=" + UserInfoTable.JIFEN + "+? where "
 				+ UserInfoTable.USER_NAME + "=?";
 		ArrayList<Object> params = new ArrayList<>();
 		params.add(gold);
@@ -37,7 +37,7 @@ public class GoldDao implements GoldService {
 	public boolean subGold(String username, String gold) {
 		boolean result = false;
 		String sql = "update " + UserInfoTable.TABLE_NAME + " set "
-				+ UserInfoTable.GOLD + "=" + UserInfoTable.GOLD + "-? where "
+				+ UserInfoTable.JIFEN + "=" + UserInfoTable.JIFEN + "-? where "
 				+ UserInfoTable.USER_NAME + "=?";
 		ArrayList<Object> params = new ArrayList<>();
 		params.add(gold);
@@ -58,7 +58,7 @@ public class GoldDao implements GoldService {
 	public boolean setGold(String username, String gold) {
 		boolean result = false;
 		String sql = "update " + UserInfoTable.TABLE_NAME + " set "
-				+ UserInfoTable.GOLD + "=? where " + UserInfoTable.USER_NAME
+				+ UserInfoTable.JIFEN + "=? where " + UserInfoTable.USER_NAME
 				+ "=?";
 		ArrayList<Object> params = new ArrayList<>();
 		params.add(gold);
