@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appinfos>
+    <app>
+        <app_id>0</app_id>
+        <app_label>备份与恢复</app_label>
+        <author_id>0</author_id>
+        <author>Yuri</author>
+        <update_time>2014-06-11</update_time>
+        <app_language>中英文</app_language>
+        <app_version>1.0</app_version>
+        <introduce>这是一款可以帮助你备份通讯录、短信、彩信以及应用的一个好工具。</introduce>
+        <title>备份通讯录、短信、彩信、应用等的一个工具</title>
+		<gold_infos>此处显示金币获取细则
+1.*************
+2.****************
+3.*******************</gold_infos>
+        <size>520192</size>
+        <app_url>apps/backuprestore.apk</app_url>
+		<icon_url>http://bcs.duapp.com/bcobjmnpu782fc7tmqxxhwj0dhmbaas/icons/ic_backuprestore_launcher.png</icon_url>
+		<jiemian_url1>http://bcs.duapp.com/bcobjmnpu782fc7tmqxxhwj0dhmbaas/captures/backup1.png</jiemian_url1>
+		<jiemian_url2>http://bcs.duapp.com/bcobjmnpu782fc7tmqxxhwj0dhmbaas/captures/backup2.png</jiemian_url2>
+		<app_type>工具</app_type>
+		<package_name>com.yuri.datatransfer</package_name>
+    </app>
+</appinfos>

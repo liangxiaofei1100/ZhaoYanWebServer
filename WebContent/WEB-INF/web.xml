@@ -10,7 +10,6 @@
 		<servlet-name>RegisterAction</servlet-name>
 		<url-pattern>/servlet/RegisterAction</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>QuickRegisterAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.quickregister.QuickRegisterAction</servlet-class>
@@ -19,7 +18,6 @@
 		<servlet-name>QuickRegisterAction</servlet-name>
 		<url-pattern>/servlet/QuickRegisterAction</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>LoginAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.login.LoginAction</servlet-class>
@@ -28,7 +26,6 @@
 		<servlet-name>LoginAction</servlet-name>
 		<url-pattern>/servlet/LoginAction</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>GetUserInfoAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.userinfomanage.GetUserInfoAction</servlet-class>
@@ -37,7 +34,6 @@
 		<servlet-name>GetUserInfoAction</servlet-name>
 		<url-pattern>/servlet/GetUserInfoAction</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>ModifyUserInfoAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.userinfomanage.ModifyUserInfoAction</servlet-class>
@@ -46,7 +42,6 @@
 		<servlet-name>ModifyUserInfoAction</servlet-name>
 		<url-pattern>/servlet/ModifyUserInfoAction</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>GetPasswordAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.getpassword.GetPasswordAction</servlet-class>
@@ -55,11 +50,9 @@
 		<servlet-name>GetPasswordAction</servlet-name>
 		<url-pattern>/servlet/GetPasswordAction</url-pattern>
 	</servlet-mapping>
-
 	<listener>
 		<listener-class>com.zhaoyan.webserver.getpassword.GetPasswordRequestClearContextListener</listener-class>
 	</listener>
-
 	<servlet>
 		<servlet-name>ResetPasswordAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.resetpassword.ResetPasswordAction</servlet-class>
@@ -68,7 +61,6 @@
 		<servlet-name>ResetPasswordAction</servlet-name>
 		<url-pattern>/servlet/ResetPasswordAction</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>GoldAction</servlet-name>
 		<servlet-class>com.zhaoyan.webserver.gold.GoldAction</servlet-class>
@@ -77,4 +69,13 @@
 		<servlet-name>GoldAction</servlet-name>
 		<url-pattern>/servlet/GoldAction</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Update3rdAppAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.apps.Update3rdAppAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Update3rdAppAction</servlet-name>
+		<url-pattern>/servlet/Update3rdAppAction</url-pattern>
+	</servlet-mapping>
+
 </web-app>

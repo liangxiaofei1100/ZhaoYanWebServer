@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -113,6 +114,20 @@ public class JDBCUtils {
 		int result = mPreparedStatement.executeUpdate();
 		isUpdateSuccess = result > 0 ? true : false;
 		return isUpdateSuccess;
+	}
+
+	/**
+	 * Execute SQL.
+	 * 
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean executeSQL(String sql) throws SQLException {
+		boolean result = false;
+		Statement statement = mConnection.createStatement();
+		result = statement.execute(sql);
+		return result;
 	}
 
 	private PreparedStatement getPreparedStatement(String sql,

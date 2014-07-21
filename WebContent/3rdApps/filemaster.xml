@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appinfos>
+    <app>
+        <app_id>3</app_id>
+        <app_label>文件大师</app_label>
+        <author_id>0</author_id>
+        <author>西安极客软件科技有限公司</author>
+        <update_time>2014-06-11</update_time>
+        <app_language>简体中文</app_language>
+        <app_version>2.0.6</app_version>
+        <introduce>Android平台功能超酷的全能文件管理工具——文件大师来袭，手机、平板文件管理、传输分享轻松搞定，高效、快捷，就这么方便。
+文件大师：管理文件，WIFI传输分享、分类浏览、文件分享、离线下载、网盘云聚合、垃圾文件清理、丰富的贴心功能，全方位管理你的手机和平板，易用、极速、更安全。</introduce>
+        <title>文件管理器</title>
+		<gold_infos>此处显示金币获取细则
+1.*************
+2.****************
+3.*******************</gold_infos>
+        <size>13451264</size>
+        <app_url>apps/filemaster.apk</app_url>
+		<icon_url>http://bcs.duapp.com/bcobjmnpu782fc7tmqxxhwj0dhmbaas/icons%2Ffilemaster.png</icon_url>
+		<jiemian_url1>http://bcs.duapp.com/bcobjmnpu782fc7tmqxxhwj0dhmbaas/captures/wenjiedashi1.png</jiemian_url1>
+		<jiemian_url2>http://bcs.duapp.com/bcobjmnpu782fc7tmqxxhwj0dhmbaas/captures/wenjiedashi2.png</jiemian_url2>
+		<app_type>工具</app_type>
+		<package_name>xcxin.fehd</package_name>
+		</app>
+</appinfos>
