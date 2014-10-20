@@ -1,4 +1,4 @@
-package com.zhaoyan.webserver.gold;
+package com.zhaoyan.webserver.chengyudahui.gold;
 
 import java.io.IOException;
 import java.io.PrintWriter;
