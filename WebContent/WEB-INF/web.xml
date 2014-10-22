@@ -85,4 +85,28 @@
 		<servlet-name>Get3rdAppInfoAction</servlet-name>
 		<url-pattern>/servlet/Get3rdAppInfoAction</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddFriendAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.friend.AddFriendAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddFriendAction</servlet-name>
+		<url-pattern>/servlet/AddFriendAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetFriendAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.friend.GetFriendAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetFriendAction</servlet-name>
+		<url-pattern>/servlet/GetFriendAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SearchForFriendAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.friend.SearchForFriendAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchForFriendAction</servlet-name>
+		<url-pattern>/servlet/SearchForFriendAction</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -108,6 +108,7 @@ public class RegisterAction extends HttpServlet {
 			List<Object> params = new ArrayList<>();
 			params.add(userName);
 			params.add(password);
+			params.add(userName);
 			registerSuccess = mRegisterService.registerUser(params);
 			if (registerSuccess) {
 				respondMessage = "Register success.";

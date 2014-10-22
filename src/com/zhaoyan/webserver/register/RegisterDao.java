@@ -19,8 +19,8 @@ public class RegisterDao implements RegisterService {
 		boolean result = false;
 		mJdbcUtils.getConnection();
 		String sql = "insert into " + UserInfoTable.TABLE_NAME + "("
-				+ UserInfoTable.USER_NAME + "," + UserInfoTable.PASSWORD
-				+ ") values (?,?)";
+				+ UserInfoTable.USER_NAME + "," + UserInfoTable.PASSWORD + ","
+				+ UserInfoTable.NICKNAME + ") values (?,?,?)";
 		try {
 			result = mJdbcUtils.updateByPreparedStatement(sql, params);
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class RegisterDao implements RegisterService {
 				+ UserInfoTable.USER_NAME + "=?";
 		List<Object> params = new ArrayList<>();
 		params.add(username);
-		
+
 		try {
 			mJdbcUtils.getConnection();
 			Map<String, Object> map = mJdbcUtils.findSingleResult(sql, params);
