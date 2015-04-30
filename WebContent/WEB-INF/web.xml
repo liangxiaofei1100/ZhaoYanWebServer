@@ -109,4 +109,13 @@
 		<servlet-name>SearchForFriendAction</servlet-name>
 		<url-pattern>/servlet/SearchForFriendAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PushAction</servlet-name>
+		<servlet-class>com.zhaoyan.webserver.push.PushAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PushAction</servlet-name>
+		<url-pattern>/servlet/PushAction</url-pattern>
+	</servlet-mapping>
 </web-app>
